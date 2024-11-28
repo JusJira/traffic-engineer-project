@@ -1,0 +1,59 @@
+services:
+  golang-server-1:
+    build:
+      context: ./golang_server/
+    ports:
+      - "8088:8888"
+    deploy:
+      resources:
+        limits:
+          memory: 128m
+          cpus: "0.5"
+        reservations:
+          memory: 128m
+          cpus: "0.5"
+    restart: always
+    networks:
+      - nginx
+  golang-server-2-a:
+    build:
+      context: ./golang_server/
+    deploy:
+      resources:
+        limits:
+          memory: 64m
+          cpus: "0.25"
+        reservations:
+          memory: 64m
+          cpus: "0.25"
+    restart: always
+    networks:
+      - nginx
+
+  golang-server-2-b:
+    build:
+      context: ./golang_server/
+    deploy:
+      resources:
+        limits:
+          memory: 64m
+          cpus: "0.25"
+        reservations:
+          memory: 64m
+          cpus: "0.25"
+    restart: always
+    networks:
+      - nginx
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    networks:
+      - nginx
+    depends_on:
+      - golang-server-2-a
+      - golang-server-2-b
+
+networks:
+  nginx:
