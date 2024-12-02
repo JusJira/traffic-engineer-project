@@ -1,0 +1,7 @@
+Total Requests: 20000
+Mean Response Time: 113.263 ms
+
+
+
+LAMBDA = 800  # Arrival rate (requests per second)
+TOTAL_REQUESTS = 20000  # Total number of requests to simulate

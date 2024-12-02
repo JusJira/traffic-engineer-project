@@ -1,0 +1,2 @@
+Total Requests: 20000
+Mean Response Time: 64.065 ms
